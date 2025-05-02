@@ -7,17 +7,54 @@ This repository includes one-hit scripts to help you quickly set up and run the 
 
 ## 🛠️ Quick Install (Interactive)
 
-Run this to clone and choose what to install:
+Run this command on your Ubuntu server:
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/smartinvest-eth/aztec-node-setup/main/install.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/smartinvest-eth/aztec-node-setup/main/aztec_install.sh)
 ```
+
+This will:
+- Clone this repository
+- Prompt you to choose between Full Node / Validator / Prover
+- Launch the appropriate setup script
 
 ---
 
-## 📦 Individual Components
+## ⚠️ Important: Check Sync Before Validator or Prover
 
-You can also run each role-specific script directly:
+Before running **Validator** or **Prover**, your Full Node must be fully synced.
+
+### 🔍 Option 1: Check via logs
+
+```bash
+journalctl -fu aztec-fullnode
+```
+
+Look for:
+
+```
+⛓️ L2 synced to block ######
+```
+
+If it's still syncing or stuck, **wait before running validator or prover**.
+
+---
+
+### ✅ Option 2: Use `sync-check.sh`
+
+You can also run:
+
+```bash
+bash <(curl -sSL https://raw.githubusercontent.com/smartinvest-eth/aztec-node-setup/main/sync-check.sh)
+```
+
+This script will:
+- Show the latest synced block
+- Warn if the fullnode service is not running
+
+---
+
+## 📦 Available Components
 
 ### 🔹 Full Node
 
@@ -51,26 +88,6 @@ bash <(curl -sSL https://raw.githubusercontent.com/smartinvest-eth/aztec-node-se
 - Creates ZK proofs to validate blocks
 - Requires Sepolia ETH and connection to validator (e.g. `http://localhost:8080`)
 - ❗ Run **only after full node is fully synced**
-
----
-
-## 🔍 Check Sync Status
-
-Before starting validator or prover, ensure your full node is fully synced.
-
-Run this to view logs:
-
-```bash
-journalctl -fu aztec-fullnode
-```
-
-Look for:
-
-```
-⛓️ L2 synced to block ######
-```
-
-If syncing is still in progress, **wait before proceeding**.
 
 ---
 
