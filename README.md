@@ -10,7 +10,7 @@ This repository includes a convenient `install.sh` one-hit script to help you qu
 Run this command on your Ubuntu server:
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/smartinvest-eth/aztec-node-setup/main/install.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/smartinvest-eth/aztec-node-setup/blob/main/aztec_install.sh)
 ```
 
 This will:
