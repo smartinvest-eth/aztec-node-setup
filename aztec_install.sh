@@ -1,4 +1,4 @@
-
+#!/bin/bash
 #!/bin/bash
 # install.sh - Script để tải và chạy các thành phần Aztec từ GitHub
 

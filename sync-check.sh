@@ -1,4 +1,4 @@
-
+#!/bin/bash
 #!/bin/bash
 # Script kiểm tra trạng thái sync của Aztec Full Node
 

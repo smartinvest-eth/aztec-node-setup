@@ -1,4 +1,4 @@
-
+#!/bin/bash
 #!/bin/bash
 # Khởi chạy Aztec Validator (Sequencer)
 

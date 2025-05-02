@@ -1,4 +1,4 @@
-
+#!/bin/bash
 #!/bin/bash
 # Cài đặt và khởi chạy Aztec Full Node (chỉ đồng bộ blockchain)
 
