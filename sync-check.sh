@@ -1,7 +1,4 @@
 #!/bin/bash
-#!/bin/bash
-# Script kiểm tra trạng thái sync của Aztec Full Node
-
 echo "🔍 Đang kiểm tra trạng thái đồng bộ Aztec L2..."
 
 if ! systemctl is-active --quiet aztec-fullnode; then
