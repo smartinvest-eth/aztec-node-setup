@@ -1,5 +1,4 @@
 #!/bin/bash
-export PATH=/root/aztec:$PATH
 #!/bin/bash
 # Cài đặt và khởi chạy Aztec Full Node (chỉ đồng bộ blockchain)
 
@@ -28,7 +27,7 @@ START_SCRIPT="${AZTEC_DIR}/aztec-fullnode.sh"
 cat > "${START_SCRIPT}" <<EOF
 #!/bin/bash
 source "${ENV_FILE}"
-aztec start \
+/root/aztec/aztec start \
   --node \
   --archiver \
   --network alpha-testnet \

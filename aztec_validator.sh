@@ -1,5 +1,4 @@
 #!/bin/bash
-export PATH=/root/aztec:$PATH
 #!/bin/bash
 # Khởi chạy Aztec Validator (Sequencer)
 
@@ -27,7 +26,7 @@ START_SCRIPT="${AZTEC_DIR}/aztec-validator.sh"
 cat > "${START_SCRIPT}" <<EOF
 #!/bin/bash
 source "${ENV_FILE}"
-aztec start \
+/root/aztec/aztec start \
   --node \
   --archiver \
   --sequencer \
