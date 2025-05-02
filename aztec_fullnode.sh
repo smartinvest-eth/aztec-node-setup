@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=/root/aztec:$PATH
 #!/bin/bash
 # Cài đặt và khởi chạy Aztec Full Node (chỉ đồng bộ blockchain)
 

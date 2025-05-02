@@ -1,3 +1,4 @@
+
 #!/bin/bash
 # aztec_install.sh - Tải và chạy các thành phần Aztec
 
@@ -11,7 +12,14 @@ fi
 git clone https://github.com/smartinvest-eth/aztec-node-setup.git /tmp/aztec-node-setup
 cd /tmp/aztec-node-setup || exit 1
 
-# 2. Menu chọn
+# 2. Cài CLI Aztec không interactive và copy vào /root/aztec
+echo "📦 Đang cài Aztec CLI..."
+curl -s https://install.aztec.network | bash
+mkdir -p /root/aztec
+cp /root/.aztec/bin/aztec /root/aztec/
+export PATH=/root/aztec:$PATH
+
+# 3. Menu chọn
 echo ""
 echo "🌐 Vui lòng chọn thành phần muốn cài đặt:"
 echo "1) Aztec Full Node"

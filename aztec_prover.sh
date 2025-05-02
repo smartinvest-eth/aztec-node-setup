@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=/root/aztec:$PATH
 #!/bin/bash
 # Cài và chạy Aztec Prover (broker + agent + node)
 

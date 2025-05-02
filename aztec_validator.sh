@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=/root/aztec:$PATH
 #!/bin/bash
 # Khởi chạy Aztec Validator (Sequencer)
 
