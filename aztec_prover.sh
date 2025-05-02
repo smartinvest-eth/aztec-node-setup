@@ -21,9 +21,9 @@ RUN_SCRIPT="${AZTEC_DIR}/aztec-prover-run.sh"
 cat > "${RUN_SCRIPT}" <<EOF
 #!/bin/bash
 source "${ENV_FILE}"
-/root/aztec/aztec start --prover-broker --network alpha-testnet --port 8081 &
+/root/.aztec/bin/aztec start --prover-broker --network alpha-testnet --port 8081 &
 sleep 2
-/root/aztec/aztec start --prover-agent --network alpha-testnet --port 8083 &
+/root/.aztec/bin/aztec start --prover-agent --network alpha-testnet --port 8083 &
 sleep 2
 exec aztec start --prover-node --archiver --network alpha-testnet --port 8082 \
   --prover.publisherPrivateKey "\${ETH_PRIVATE_KEY}" \

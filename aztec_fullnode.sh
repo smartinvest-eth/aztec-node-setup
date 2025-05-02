@@ -27,7 +27,7 @@ START_SCRIPT="${AZTEC_DIR}/aztec-fullnode.sh"
 cat > "${START_SCRIPT}" <<EOF
 #!/bin/bash
 source "${ENV_FILE}"
-/root/aztec/aztec start \
+/root/.aztec/bin/aztec start \
   --node \
   --archiver \
   --network alpha-testnet \
