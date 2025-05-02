@@ -1,83 +1,81 @@
 
 # Aztec Node Setup Scripts (CLI-Based)
 
-This repository includes 3 one-hit scripts to help you quickly set up and run the Aztec Network components using the official Aztec CLI:
-
-## Scripts
-
-### 1. `aztec_fullnode.sh`
-- Sets up and starts an **Aztec full node** (synchronizes the chain only).
-- Does **not** run validator or prover.
-- Useful as a foundation before running validator/prover.
-
-### 2. `aztec_validator.sh`
-- Runs an **Aztec sequencer (validator)** node.
-- Requires full node sync and an Ethereum Sepolia wallet with sufficient ETH for submitting blocks.
-
-### 3. `aztec_prover.sh`
-- Runs an **Aztec prover**, including broker, agent, and prover node.
-- Requires coordination with a validator node.
+This repository includes a convenient `install.sh` one-hit script to help you quickly set up and run the Aztec Network components using the official Aztec CLI.
 
 ---
 
-## Prerequisites
+## 🛠️ One-liner Installation
 
-- Ubuntu server with `sudo` access.
-- Internet connection.
-- **An Ethereum Sepolia wallet with sufficient testnet ETH** (used for submitting transactions as validator or prover).
-  - You can request Sepolia ETH from a faucet like [https://sepoliafaucet.com](https://sepoliafaucet.com)
-
----
-
-## How to Use
-
-### 🔹 1. Run Full Node
+Run this command on your Ubuntu server:
 
 ```bash
-chmod +x aztec_fullnode.sh
-sudo ./aztec_fullnode.sh
+bash <(curl -sSL https://raw.githubusercontent.com/smartinvest-eth/aztec-node-setup/main/install.sh)
 ```
 
-You'll be prompted for:
-- Execution RPC URL (e.g., from Infura, Alchemy)
-- Beacon/Consensus RPC URL (e.g., from dRPC)
-
-This node will sync the Aztec blockchain and provide data availability.
+This will:
+- Clone this repository
+- Prompt you to choose between Full Node / Validator / Prover
+- Launch the appropriate setup script
 
 ---
 
-### 🔹 2. Run Validator
+## ⚠️ Important Sync Requirement
+
+Before running **Validator** or **Prover**, your full node must be fully synced.
+
+### 🔍 How to check sync status
+
+Run this command to view logs:
 
 ```bash
-chmod +x aztec_validator.sh
-sudo ./aztec_validator.sh
+journalctl -fu aztec-fullnode
 ```
 
-You'll be prompted for:
-- RPC URL & Beacon URL
-- Your Ethereum Sepolia private key
-- Your coinbase address (where rewards go)
+Wait until you see a message like:
 
-⚠️ **Important:** Make sure this wallet has Sepolia ETH!
+```
+⛓️ L2 synced to block 123456
+```
+
+If your logs show ongoing syncing or older blocks, **do not run validator or prover yet**.
 
 ---
 
-### 🔹 3. Run Prover
+## 📦 Available Components
 
-```bash
-chmod +x aztec_prover.sh
-sudo ./aztec_prover.sh
-```
+### 1. Aztec Full Node
+- Synchronizes the Aztec blockchain.
+- No validator or prover role.
+- Recommended as a base layer before running validator or prover.
 
-You'll be prompted for:
-- Your Ethereum Sepolia private key
-- The internal URL of your validator node (e.g., `http://localhost:8080`)
+### 2. Aztec Validator (Sequencer)
+- Submits blocks to L1 using your Ethereum Sepolia account.
+- ⚠️ Your EVM wallet must have enough **Sepolia ETH** to cover gas fees.
+- You will be asked to enter your private key and coinbase address.
+- ❗Only run this after fullnode is synced.
+
+### 3. Aztec Prover
+- Includes broker, agent, and prover node.
+- Coordinates with a validator node (usually local on port 8080).
+- Also requires a Sepolia ETH-funded account for publishing proofs.
+- ❗Only run this after fullnode is synced.
 
 ---
 
-## Logs
+## 🧪 Prerequisites
 
-You can monitor each service with:
+- Ubuntu server (root or sudo access)
+- Internet connection
+- RPC endpoint for Ethereum Sepolia (e.g., Alchemy, Infura)
+- Beacon endpoint for Sepolia (e.g., dRPC or QuickNode)
+- **Sepolia ETH** in your wallet (get it from [https://sepoliafaucet.com](https://sepoliafaucet.com))
+
+---
+
+## 🔍 Logs
+
+After installation, use the following to monitor:
 
 ```bash
 journalctl -fu aztec-fullnode
@@ -87,13 +85,20 @@ journalctl -fu aztec-prover
 
 ---
 
-## Notes
+## 🗂 File Structure
 
-- All configuration and helper scripts are stored under: `/root/aztec`
-- Services are registered under systemd and auto-start on boot
+All config files and helper scripts will be saved under:
+
+```
+/root/aztec/
+```
+
+Systemd services will auto-start on boot and restart on failure.
 
 ---
 
-## Author
+## ✍️ Maintainer
 
-Script maintained by [smartinvest.eth](https://github.com/smartinvest-eth)
+Created and maintained by [smartinvest.eth](https://github.com/smartinvest-eth)
+
+Feel free to fork or contribute.
